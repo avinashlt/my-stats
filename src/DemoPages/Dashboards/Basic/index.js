@@ -23,6 +23,7 @@ import {
     ComposedChart,
     CartesianGrid,
     Tooltip,
+    XAxis, YAxis,
     LineChart
 } from 'recharts';
 
@@ -76,6 +77,11 @@ export default class AnalyticsDashboard1 extends Component {
         this.state = {
             dropdownOpen: false,
             activeTab1: '11',
+            latest : 0,
+            discharged : 0,
+            deaths : 0,
+            confirmedCasesForeign : 0,
+            graphResult : []
 
         };
         this.toggle = this.toggle.bind(this);
@@ -97,6 +103,31 @@ export default class AnalyticsDashboard1 extends Component {
         }
     }
 
+    componentDidMount() {
+        fetch(`https://api.rootnet.in/covid19-in/stats/latest`)
+            .then(res => res.json())
+            .then(result => this.setState({ 
+                total: result.data.summary.total,
+                discharged :  result.data.summary.discharged,
+                deaths : result.data.summary.deaths,
+                confirmedCasesForeign : result.data.summary.confirmedCasesForeign
+            }));
+
+        fetch(`https://api.rootnet.in/covid19-in/stats/history`)
+            .then(res => res.json())
+            .then(result => {
+                let graphData = [];
+                result.data.forEach(item => {
+                    graphData.push({day : item.day, count : item.summary.total})
+                })
+                this.setState({
+                    graphResult : graphData
+                })
+            });
+
+
+    }
+
     render() {
 
         return (
@@ -110,8 +141,8 @@ export default class AnalyticsDashboard1 extends Component {
                     transitionLeave={false}>
                     <div>
                         <PageTitle
-                            heading="Basic Dashboard"
-                            subheading="This is an example dashboard created using build-in elements and components."
+                            heading="India fight Covid-19 "
+                            subheading="Below are the number that explains the current situation"
                             icon="pe-7s-car icon-gradient bg-mean-fruit"
                         />
                         <Row>
@@ -145,7 +176,7 @@ export default class AnalyticsDashboard1 extends Component {
                                                                 <div className="widget-content-wrapper">
                                                                     <div className="widget-content-left mr-3">
                                                                         <div className="widget-numbers fsize-3 text-muted">
-                                                                            63%
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                     <div className="widget-content-right">
@@ -249,15 +280,17 @@ export default class AnalyticsDashboard1 extends Component {
                                                     </div>
                                                 </div>
                                                 <ResponsiveContainer height={187}>
-                                                    <AreaChart data={data} margin={{top: -45, right: 0, left: 0, bottom: 0}}>
+                                                    <AreaChart data={this.state.graphResult} margin={{top: -45, right: 0, left: 0, bottom: 0}}>
                                                         <defs>
                                                             <linearGradient id="colorPv2" x1="0" y1="0" x2="0" y2="1">
                                                                 <stop offset="10%" stopColor="var(--warning)" stopOpacity={0.7}/>
                                                                 <stop offset="90%" stopColor="var(--warning)" stopOpacity={0}/>
                                                             </linearGradient>
                                                         </defs>
+                                                        <XAxis dataKey="day" />
+                                                        <YAxis />
                                                         <Tooltip/>
-                                                        <Area type='monotoneX' dataKey='uv' stroke='var(--warning)' strokeWidth={2} fillOpacity={1}
+                                                        <Area type='monotoneX' dataKey='count' stroke='var(--warning)' strokeWidth={2} fillOpacity={1}
                                                               fill="url(#colorPv2)"/>
                                                     </AreaChart>
                                                 </ResponsiveContainer>
@@ -456,10 +489,10 @@ export default class AnalyticsDashboard1 extends Component {
                                                 <i className="lnr-cog icon-gradient bg-arielle-smile"/>
                                             </div>
                                             <div className="widget-numbers">
-                                                87,4
+                                            {this.state.total}
                                             </div>
                                             <div className="widget-subheading">
-                                                Reports Generated
+                                                Total cases
                                             </div>
                                             <div className="widget-description text-white">
                                                 <FontAwesomeIcon icon={faAngleUp}/>
@@ -468,16 +501,16 @@ export default class AnalyticsDashboard1 extends Component {
                                         </div>
                                     </Col>
                                     <Col md="6">
-                                        <div className="card mb-3 bg-midnight-bloom widget-chart text-white card-border">
+                                        <div className="card mb-3 bg-grow-early widget-chart text-white card-border">
                                             <div className="icon-wrapper rounded">
                                                 <div className="icon-wrapper-bg bg-white opacity-10"/>
                                                 <i className="lnr-screen icon-gradient bg-warm-flame"/>
                                             </div>
                                             <div className="widget-numbers">
-                                                17.2k
+                                                {this.state.discharged}
                                             </div>
                                             <div className="widget-subheading">
-                                                Profiles
+                                                Discharged
                                             </div>
                                             <div className="widget-description text-white">
                                                 <span className="pr-1">62,7%</span>
@@ -486,16 +519,16 @@ export default class AnalyticsDashboard1 extends Component {
                                         </div>
                                     </Col>
                                     <Col md="6">
-                                        <div className="card mb-3 bg-grow-early widget-chart text-white card-border">
+                                        <div className="card mb-3 bg-midnight-bloom widget-chart text-white card-border">
                                             <div className="icon-wrapper rounded">
                                                 <div className="icon-wrapper-bg bg-dark opacity-9"/>
                                                 <i className="lnr-graduation-hat text-white"/>
                                             </div>
                                             <div className="widget-numbers">
-                                                63.2k
+                                                {this.state.confirmedCasesForeign}
                                             </div>
                                             <div className="widget-subheading">
-                                                Bugs Fixed
+                                            Confirmed Cases Foreign
                                             </div>
                                             <div className="widget-description text-white">
                                                 <FontAwesomeIcon icon={faArrowRight}/>
@@ -511,10 +544,10 @@ export default class AnalyticsDashboard1 extends Component {
                                                     <i className="lnr-cog"/>
                                                 </div>
                                                 <div className="widget-numbers">
-                                                    45.8k
+                                                    {this.state.deaths}
                                                 </div>
                                                 <div className="widget-subheading">
-                                                    Total Views
+                                                    Deaths
                                                 </div>
                                                 <div className="widget-description">
                                                     <FontAwesomeIcon className="text-white opacity-5" icon={faAngleUp}/>
