@@ -13896,3 +13896,9 @@ body {
 
   .header-icon {
     display: none; } }
+
+@media only screen and (max-width: 600px) {
+      .marginTop-20 {
+        margin-top: 20px;
+      }
+}
