@@ -37,9 +37,6 @@ class Header extends React.Component {
                         <div className="app-header-left">
                             <SearchBox/>
                         </div>
-                        <div className="app-header-right">
-                            <UserBox/>
-                        </div>
                     </div>
                 </ReactCSSTransitionGroup>
             </Fragment>

@@ -1,88 +1,69 @@
 export const MainNav = [
     {
         icon: 'pe-7s-rocket',
-        label: 'Dashboard Example',
+        label: 'Dashboard',
         to: '#/dashboards/basic',
     },
 ];
 export const ComponentsNav = [
     {
         icon: 'pe-7s-diamond',
-        label: 'Elements',
+        label: 'India',
         content: [
             {
-                label: 'Standard Buttons',
-                to: '#/elements/buttons-standard',
+                label: 'Karnataka',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Dropdowns',
-                to: '#/elements/dropdowns',
+                label: 'Delhi',
+                to: '#/dashboards/basic',
 
             },
             {
-                label: 'Icons',
-                to: '#/elements/icons',
+                label: 'Maharastra',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Badges',
-                to: '#/elements/badges-labels',
+                label: 'Kerela',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Cards',
-                to: '#/elements/cards',
+                label: 'Tamil nadu',
+                to: '#/dashboards/basic',
             },
-            {
-                label: 'List Groups',
-                to: '#/elements/list-group',
-            },
-            {
-                label: 'Navigation Menus',
-                to: '#/elements/navigation',
-            },
-            {
-                label: 'Utilities',
-                to: '#/elements/utilities',
-            },
+
         ],
     },
     {
         icon: 'pe-7s-car',
-        label: 'Components',
+        label: 'Countries',
         content: [
             {
-                label: 'Tabs',
-                to: '#/components/tabs',
+                label: 'India',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Notifications',
-                to: '#/components/notifications',
+                label: 'USA',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Modals',
-                to: '#/components/modals',
+                label: 'Spain',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Progress Bar',
-                to: '#/components/progress-bar',
+                label: 'Italy',
+                to: '#/dashboards/basic',
             },
             {
-                label: 'Tooltips & Popovers',
-                to: '#/components/tooltips-popovers',
-            },
-            {
-                label: 'Carousel',
-                to: '#/components/carousel',
-            },
-            {
-                label: 'Maps',
-                to: '#/components/maps',
+                label: 'UK',
+                to: '#/dashboards/basic',
             },
         ],
     },
     {
         icon: 'pe-7s-display2',
-        label: 'Regular Tables',
-        to: '#/tables/regular-tables',
+        label: 'World Map',
+        to: '#/dashboards/basic',
     },
 ];
 export const FormsNav = [

@@ -12,12 +12,12 @@ class AppFooter extends React.Component {
                             <ul className="nav">
                                 <li className="nav-item">
                                     <a href="javascript:void(0);" className="nav-link">
-                                        Footer Link 1
+                                        Covid -19
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a href="javascript:void(0);" className="nav-link">
-                                        Footer Link 2
+                                        Pandamic
                                     </a>
                                 </li>
                             </ul>
@@ -26,7 +26,7 @@ class AppFooter extends React.Component {
                             <ul className="nav">
                                 <li className="nav-item">
                                     <a href="javascript:void(0);" className="nav-link">
-                                        Footer Link 3
+                                        Stay home
                                     </a>
                                 </li>
                                 <li className="nav-item">
@@ -34,7 +34,7 @@ class AppFooter extends React.Component {
                                         <div className="badge badge-success mr-1 ml-0">
                                             <small>NEW</small>
                                         </div>
-                                        Footer Link 4
+                                        Fight corona
                                     </a>
                                 </li>
                             </ul>
